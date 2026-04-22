@@ -30,16 +30,17 @@ def timeup():
 def update():
     global score
     ball.y+=ballspeed
-    if keyboard.D and basket.right<WIDTH:
-        basket.x=basket.x+10
-    elif keyboard.A and basket.left>0:
-        basket.x=basket.x-10
-    if ball.colliderect(basket):
-        score=score+1
-        ball.x=random.randint(50,WIDTH-50)
-        ball.y=0
-    if ball.y==580:
-        ball.x=random.randint(50,WIDTH-50)
-        ball.y=0
-clock.schedule(timeup,10)
+    if not gameover:
+        if keyboard.D and basket.right<WIDTH:
+            basket.x=basket.x+10
+        elif keyboard.A and basket.left>0:
+            basket.x=basket.x-10
+        if ball.colliderect(basket):
+            score=score+1
+            ball.x=random.randint(50,WIDTH-50)
+            ball.y=0
+        if ball.y==580:
+            ball.x=random.randint(50,WIDTH-50)
+            ball.y=0
+clock.schedule(timeup,60)
 pgzrun.go()
